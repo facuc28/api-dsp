@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 @RestController
 @RequestMapping("/usuario")
@@ -26,9 +29,12 @@ public class RecursoUsuarios {
     }
 
     @RequestMapping("/get")
-    public List<Usuario> retornarUsuario(@RequestParam Long id) {
+    public Usuario retornarUsuarioPorId(@RequestParam Long id) {
+        Optional<Usuario> user = repositorioUsuarios.findById(id);
+        final Predicate notEmptyUser = o -> o != null;
+        final Predicate userInstance = o -> o instanceof Usuario;
 
-        return repositorioUsuarios.findAll();
+        return (Usuario) user.filter(notEmptyUser).filter(userInstance).get();
     }
 
     @PostMapping("/add")
