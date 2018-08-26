@@ -1,8 +1,25 @@
 package com.dsp.code.apidsp.dominio;
 
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public abstract class Persona implements Serializable {
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Persona {
+
+    @Id
+    @GeneratedValue
+    private long id;
     private String nombre;
     private String apellido;
     private String telefono;

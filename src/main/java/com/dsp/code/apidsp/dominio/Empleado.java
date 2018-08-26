@@ -2,11 +2,11 @@ package com.dsp.code.apidsp.dominio;
 
 import lombok.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class Empleado extends Usuario {
+@AllArgsConstructor
+public class Empleado extends Persona{
     private String identifiacionEmpleado;
 }
